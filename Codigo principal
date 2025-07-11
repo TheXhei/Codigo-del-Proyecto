@@ -1,0 +1,121 @@
+//Codigo principal del servidor (Servidor creado con flask usando python)
+
+
+from flask import Flask, render_template, request, redirect, url_for, flash
+import json
+import os
+
+app = Flask(__name__)
+app.secret_key = 'clave_secreta'
+
+USERS_FILE = 'usuarios.json'
+
+def cargar_usuarios():
+    if os.path.exists(USERS_FILE):
+        with open(USERS_FILE, 'r') as f:
+            return json.load(f)
+    return {}
+
+def guardar_usuarios(usuarios):
+    with open(USERS_FILE, 'w') as f:
+        json.dump(usuarios, f)
+
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+@app.route('/portal')
+def portal():
+    return render_template('portal.html')
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    usuarios = cargar_usuarios()
+    if request.method == 'POST':
+        correo = request.form['email']
+        contraseña = request.form['password']
+        tipo_usuario = request.form['tipo_usuario']
+
+        if (correo in usuarios and
+            usuarios[correo]['password'] == contraseña and
+            usuarios[correo]['tipo_usuario'] == tipo_usuario):
+            flash('✅ Sesión iniciada correctamente.')
+            return redirect(url_for('portal'))
+        else:
+            flash('❌ Credenciales incorrectas.')
+
+    return render_template('login.html')
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    usuarios = cargar_usuarios()
+    if request.method == 'POST':
+        nombre = request.form['nombre']
+        correo = request.form['email']
+        password = request.form['password']
+        confirmar = request.form['confirmar']
+        tipo_usuario = request.form['tipo_usuario']
+
+        if password != confirmar:
+            flash('❌ Las contraseñas no coinciden.')
+            return redirect(url_for('register'))
+
+        if correo in usuarios:
+            flash('❌ Ya existe un usuario con ese correo.')
+            return redirect(url_for('register'))
+
+        usuarios[correo] = {
+            'nombre': nombre,
+            'password': password,
+            'tipo_usuario': tipo_usuario
+        }
+
+        guardar_usuarios(usuarios)
+        flash('✅ Registro exitoso. Ahora puedes iniciar sesión.')
+        return redirect(url_for('login'))
+
+    return render_template('register.html')
+
+@app.route('/recover', methods=['GET', 'POST'])
+def recover():
+    if request.method == 'POST':
+        correo = request.form['email']
+        usuarios = cargar_usuarios()
+        if correo in usuarios:
+            flash('📧 Correo encontrado. Pronto recibirás instrucciones.')
+        else:
+            flash('❌ No se encontró ese correo.')
+        return redirect(url_for('recover'))
+
+    return render_template('recover.html')
+
+@app.route('/servicios')
+def servicios():
+    try:
+        return render_template('servicios.html')
+    except Exception as e:
+        return f"Error al cargar plantilla servicios.html: {e}"
+
+@app.route('/biblioteca')
+def biblioteca():
+    try:
+        return render_template('biblioteca.html')
+    except Exception as e:
+        return f"Error al cargar plantilla biblioteca.html: {e}"
+
+@app.route('/aula')
+def aula():
+    try:
+        return render_template('aula.html')
+    except Exception as e:
+        return f"Error al cargar plantilla aula.html: {e}"
+
+@app.route('/sistemas')
+def sistemas():
+    try:
+        return render_template('sistemas.html')
+    except Exception as e:
+        return f"Error al cargar plantilla sistemas.html: {e}"
+
+if __name__ == '__main__':
+    app.run(debug=True)
