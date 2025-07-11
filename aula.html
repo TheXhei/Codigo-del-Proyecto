@@ -4,16 +4,126 @@
   <meta charset="UTF-8" />
   <title>Aula Virtual</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <style>
+    .nivel {
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      margin: 20px auto;
+      padding: 20px;
+      max-width: 600px;
+      background-color: #f9f9f9;
+    }
+
+    .nivel h3 {
+      margin-top: 0;
+      color: #2c3e50;
+    }
+
+    .clase {
+      margin: 15px 0;
+      padding: 10px;
+      background-color: #eaf4ff;
+      border-radius: 8px;
+    }
+
+    .clase-title {
+      font-weight: bold;
+    }
+
+    .boton {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 8px 16px;
+      background-color: #3498db;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+    }
+
+    .boton:hover {
+      background-color: #2980b9;
+    }
+
+    .titulo {
+      text-align: center;
+      margin-top: 50px;
+    }
+  </style>
 </head>
 <body>
-  <div class="container" style="text-align:center; margin-top: 50px;">
-    <h2>🎓 Aula Virtual</h2>
-    <ul>
-      <li>Clases en línea</li>
-      <li>Materiales educativos</li>
-      <li>Recursos para estudiantes</li>
-    </ul>
-    <p><a href="{{ url_for('portal') }}">← Volver al portal</a></p>
+  <div class="container">
+    <h2 class="titulo">🎓 Aula Virtual</h2>
+
+    <!-- Nivel Bajo -->
+    <div class="nivel">
+      <h3>🔰 Nivel Bajo: Introducción a la Tecnología</h3>
+
+      <div class="clase">
+        <div class="clase-title">📘 Clase 1: Encender y apagar el computador</div>
+        <p>Aprende a iniciar y apagar un equipo de manera segura.</p>
+        <a href="#" class="boton">Ver clase</a>
+      </div>
+
+      <div class="clase">
+        <div class="clase-title">📘 Clase 2: Uso básico del teclado y mouse</div>
+        <p>Identifica y practica con los elementos principales de entrada.</p>
+        <a href="#" class="boton">Ver clase</a>
+      </div>
+
+      <div class="clase">
+        <div class="clase-title">📘 Clase 3: ¿Qué es Internet?</div>
+        <p>Conceptos básicos para comenzar a navegar por la web.</p>
+        <a href="#" class="boton">Ver clase</a>
+      </div>
+    </div>
+
+    <!-- Nivel Medio -->
+    <div class="nivel">
+      <h3>🧩 Nivel Medio: Herramientas Digitales</h3>
+
+      <div class="clase">
+        <div class="clase-title">📘 Clase 1: Uso de smartphones</div>
+        <p>Conoce cómo manejar las funciones básicas de un celular.</p>
+        <a href="#" class="boton">Ver clase</a>
+      </div>
+
+      <div class="clase">
+        <div class="clase-title">📘 Clase 2: WhatsApp y redes sociales</div>
+        <p>Aprende a enviar mensajes, fotos y videos fácilmente.</p>
+        <a href="#" class="boton">Ver clase</a>
+      </div>
+
+      <div class="clase">
+        <div class="clase-title">📘 Clase 3: Herramientas de oficina básicas</div>
+        <p>Introducción a Word, Excel y otras aplicaciones útiles.</p>
+        <a href="#" class="boton">Ver clase</a>
+      </div>
+    </div>
+
+    <!-- Nivel Alto -->
+    <div class="nivel">
+      <h3>🚀 Nivel Alto: Competencias Avanzadas</h3>
+
+      <div class="clase">
+        <div class="clase-title">📘 Clase 1: Seguridad en línea</div>
+        <p>Protege tu información personal en internet.</p>
+        <a href="#" class="boton">Ver clase</a>
+      </div>
+
+      <div class="clase">
+        <div class="clase-title">📘 Clase 2: Creación de contenido</div>
+        <p>Cómo grabar, editar y compartir videos o imágenes.</p>
+        <a href="#" class="boton">Ver clase</a>
+      </div>
+
+      <div class="clase">
+        <div class="clase-title">📘 Clase 3: Trámites digitales</div>
+        <p>Realiza gestiones básicas en línea como pagar cuentas o pedir horas médicas.</p>
+        <a href="#" class="boton">Ver clase</a>
+      </div>
+    </div>
+
+    <p style="text-align: center;"><a href="{{ url_for('portal') }}">← Volver al portal</a></p>
   </div>
 </body>
 </html>
