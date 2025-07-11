@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <img src="{{ url_for('static', filename='logo_png/logomoderno.png') }}" alt="Logo" style="width: 100px; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto;">
+        <h2>Iniciar Sesión</h2>
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul style="color: green;">
+              {% for message in messages %}
+                <li>{{ message }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+
+        <form method="POST">
+            <input type="email" name="email" placeholder="Correo electrónico" required>
+            <input type="password" name="password" placeholder="Contraseña" required>
+
+            <select name="tipo_usuario" required>
+              <option value="" disabled selected>Selecciona tu tipo de usuario</option>
+              <option value="niño">Niño</option>
+              <option value="adulto">Adulto</option>
+              <option value="adulto mayor">Adulto Mayor</option>
+              <option value="funcionario">Funcionario</option>
+            </select>
+
+            <input type="submit" value="Entrar">
+        </form>
+
+        <p>
+            <a href="{{ url_for('recover') }}">¿Olvidaste tu contraseña?</a><br>
+            ¿No tienes cuenta? <a href="{{ url_for('register') }}">Regístrate aquí</a>
+        </p>
+    </div>
+</body>
+</html>
