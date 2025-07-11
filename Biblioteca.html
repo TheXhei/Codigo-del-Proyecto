@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Biblioteca Virtual</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <div class="container" style="text-align:center; margin-top: 50px;">
+    <h2>📚 Biblioteca Virtual</h2>
+    <ul>
+      <li>Catálogo de libros municipales</li>
+      <li>Acceso a archivos históricos digitales</li>
+      <li>Revistas y documentos técnicos</li>
+    </ul>
+    <p><a href="{{ url_for('portal') }}">← Volver al portal</a></p>
+  </div>
+</body>
+</html>
