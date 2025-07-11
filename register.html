@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Cuenta</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flashes">
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    <img src="{{ url_for('static', filename='logo_png/logomoderno.png') }}" alt="Logo ULagos" style="display:block; margin:0 auto 20px auto; width:140px;">
+    <h2>Crear nueva cuenta</h2>
+    <form method="POST">
+      <input type="text" name="nombre" placeholder="Nombre completo" required>
+      <input type="email" name="email" placeholder="Correo electrónico" required>
+      <input type="password" name="password" placeholder="Contraseña" required>
+      <input type="password" name="confirmar" placeholder="Confirmar contraseña" required>
+
+      <select name="tipo_usuario" required>
+        <option value="" disabled selected>Selecciona tu tipo de usuario</option>
+        <option value="niño">Niño</option>
+        <option value="adulto">Adulto</option>
+        <option value="adulto mayor">Adulto Mayor</option>
+        <option value="funcionario">Funcionario</option>
+      </select>
+
+      <input type="submit" value="Registrarse">
+    </form>
+    <p>¿Ya tienes cuenta? <a href="{{ url_for('login') }}">Inicia sesión</a></p>
+  </div>
+</body>
+</html>
