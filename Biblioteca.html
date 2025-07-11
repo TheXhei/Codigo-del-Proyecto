@@ -2,18 +2,88 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Biblioteca Virtual</title>
+  <title>Biblioteca Virtual - Nivelación Digital</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <style>
+    .nivel {
+      background-color: #f1f1f1;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      padding: 20px;
+      text-align: left;
+    }
+
+    .nivel h3 {
+      cursor: pointer;
+      margin: 0;
+      padding: 10px;
+      background-color: #dbeaff;
+      border-radius: 10px;
+    }
+
+    .contenido {
+      display: none;
+      margin-top: 15px;
+      padding-left: 15px;
+    }
+
+    .material {
+      margin: 5px 0;
+    }
+
+    .material a {
+      text-decoration: none;
+      color: #007bff;
+    }
+
+    .material a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-  <div class="container" style="text-align:center; margin-top: 50px;">
-    <h2>📚 Biblioteca Virtual</h2>
-    <ul>
-      <li>Catálogo de libros municipales</li>
-      <li>Acceso a archivos históricos digitales</li>
-      <li>Revistas y documentos técnicos</li>
-    </ul>
-    <p><a href="{{ url_for('portal') }}">← Volver al portal</a></p>
+  <div class="container" style="max-width: 800px; margin: 50px auto;">
+    <h2 style="text-align: center;">📚 Biblioteca Virtual - Cursos por Nivel</h2>
+    <p style="text-align: center;">Accede a los recursos educativos según tu nivel de conocimiento tecnológico.</p>
+
+    <!-- Nivel Bajo -->
+    <div class="nivel">
+      <h3 onclick="toggleContenido('bajo')">🔰 Nivel Bajo: Introducción a la Tecnología</h3>
+      <div id="bajo" class="contenido">
+        <div class="material"><strong>📘 Curso:</strong> Manejo básico de computador</div>
+        <div class="material"><a href="{{ url_for('static', filename='curso/nivel_bajo/manual_basico.pdf') }}" target="_blank">📄 Manual Básico</a></div>
+        <div class="material"><a href="{{ url_for('static', filename='curso/nivel_bajo/ejercicio1.docx') }}" target="_blank">📎 Ejercicio práctico</a></div>
+      </div>
+    </div>
+
+    <!-- Nivel Medio -->
+    <div class="nivel">
+      <h3 onclick="toggleContenido('medio')">🧩 Nivel Medio: Herramientas Digitales</h3>
+      <div id="medio" class="contenido">
+        <div class="material"><strong>📘 Curso:</strong> Uso de celulares y apps</div>
+        <div class="material"><a href="{{ url_for('static', filename='curso/nivel_medio/guia_smartphones.pdf') }}" target="_blank">📄 Guía de Smartphones</a></div>
+        <div class="material"><a href="{{ url_for('static', filename='curso/nivel_medio/tarea1.xlsx') }}" target="_blank">📎 Actividad en Excel</a></div>
+      </div>
+    </div>
+
+    <!-- Nivel Alto -->
+    <div class="nivel">
+      <h3 onclick="toggleContenido('alto')">🚀 Nivel Alto: Competencias Avanzadas</h3>
+      <div id="alto" class="contenido">
+        <div class="material"><strong>📘 Curso:</strong> Seguridad y creación digital</div>
+        <div class="material"><a href="{{ url_for('static', filename='curso/nivel_alto/seguridad_online.pdf') }}" target="_blank">📄 Seguridad en Internet</a></div>
+        <div class="material"><a href="{{ url_for('static', filename='curso/nivel_alto/actividad_creativa.pptx') }}" target="_blank">📎 Presentación editable</a></div>
+      </div>
+    </div>
+
+    <p style="text-align: center;"><a href="{{ url_for('portal') }}">← Volver al portal</a></p>
   </div>
+
+  <script>
+    function toggleContenido(id) {
+      const contenido = document.getElementById(id);
+      contenido.style.display = contenido.style.display === 'block' ? 'none' : 'block';
+    }
+  </script>
 </body>
 </html>
