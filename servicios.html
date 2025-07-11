@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Servicios Municipales</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <div class="container" style="text-align:center; margin-top: 50px;">
+    <h2>🏛️ Servicios Municipales</h2>
+    <h3>Trámites</h3>
+    <ul>
+      <li>Renovación de licencias</li>
+      <li>Certificados de residencia</li>
+      <li>Permisos de construcción</li>
+    </ul>
+    <h3>Salud</h3>
+    <ul>
+      <li>Solicitudes médicas</li>
+      <li>Atención en postas rurales</li>
+      <li>Fichas electrónicas</li>
+    </ul>
+    <h3>Educación</h3>
+    <ul>
+      <li>Inscripción a escuelas municipales</li>
+      <li>Becas locales</li>
+    </ul>
+    <p><a href="{{ url_for('portal') }}">← Volver al portal</a></p>
+  </div>
+</body>
+</html>
