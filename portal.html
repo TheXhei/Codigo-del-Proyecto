@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Portal de Servicios Digitales</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <style>
+    .portal-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    a.opcion {
+      display: block;
+      background-color: #f9f9f9;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 250px;
+      padding: 25px;
+      text-align: center;
+      transition: transform 0.3s ease;
+      color: inherit;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    a.opcion:hover {
+      transform: scale(1.05);
+      background-color: #e0ecff;
+    }
+
+    a.opcion h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    a.sistemas-municipales {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #e6f0ff;
+      padding: 15px 20px;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+      font-weight: bold;
+      color: inherit;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    a.sistemas-municipales:hover {
+      background-color: #cce0ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" style="text-align: center;">
+    <img
+      src="{{ url_for('static', filename='logo_png/logomoderno.png') }}"
+      alt="Logo ULagos"
+      style="width: 120px; margin-bottom: 20px"
+    />
+    <h2>🌐 Portal de Servicios Digitales</h2>
+
+    <div class="portal-container">
+      <!-- Servicios Municipales -->
+      <a href="{{ url_for('servicios') }}" class="opcion" role="button" tabindex="0">
+        <h3>🏛️ Servicios Municipales</h3>
+        <p>Trámites, salud y educación.</p>
+      </a>
+
+      <!-- Biblioteca Virtual -->
+      <a href="{{ url_for('biblioteca') }}" class="opcion" role="button" tabindex="0">
+        <h3>📚 Biblioteca Virtual</h3>
+        <p>Libros, archivos y revistas.</p>
+      </a>
+
+      <a href="{{ url_for('aula') }}" class="opcion" role="button" tabindex="0">
+        <h3>🎓 Aula Virtual</h3>
+        <p>Clases, materiales y recursos.</p>
+      </a>
+    </div>
+
+    <a href="{{ url_for('sistemas') }}" class="sistemas-municipales" role="button" tabindex="0">
+      🧾 Sistemas Municipales
+    </a>
+
+    <p style="margin-top: 40px;">
+      <a href="{{ url_for('home') }}">← Volver al inicio</a>
+    </p>
+  </div>
+</body>
+</html>
