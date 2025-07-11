@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Recuperar Cuenta</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container" style="max-width: 400px; margin: 100px auto; text-align: center;">
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class="flashes" style="color: red;">
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  {% endwith %}
+  <img src="{{ url_for('static', filename='logo_png/logomoderno.png') }}" alt="Logo ULagos" style="width: 120px;">
+  <h2>Recuperar cuenta</h2>
+  <form method="POST">
+    <input type="email" name="email" placeholder="Correo electrónico" required>
+    <input type="submit" value="Recuperar cuenta">
+  </form>
+  <p>¿Ya la recordaste? <a href="{{ url_for('login') }}">Inicia sesión</a></p>
+</div>
+</body>
+</html>
